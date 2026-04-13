@@ -11,7 +11,8 @@ require('./db')
 const RideRouter = require('./routes/RideRouter')
 
 const app = express()
-const PORT = process.env.PORT || 3000
+
+const PORT = process.env.PORT || 3001
 
 app.use(cors())
 app.use(logger('dev'))
@@ -25,5 +26,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on port ${PORT} `)
 })
