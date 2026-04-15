@@ -3,26 +3,26 @@ dns.setServers(["8.8.8.8", "1.1.1.1"])
 
 //////////////////////////
 
-const express = require('express')
+const express = require("express")
 const app = express()
-const logger = require('morgan')
-const cors = require('cors')
+const logger = require("morgan")
+const cors = require("cors")
 
-require('dotenv').config()
-require('./db')
+require("dotenv").config()
+require("./db")
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3229
 
-const RideRouter = require('./routes/RideRouter')
+const ThemeRouter = require("./routes/ThemeRouter")
 
 app.use(cors())
-app.use(logger('dev'))
+app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use('/rides', RideRouter)
+app.use("/themes", ThemeRouter)
 
-app.get('/', (req, res) => {
-  res.send('Theme Park Running ')
+app.get("/", (req, res) => {
+  res.send("Theme Park Running ")
 })
 
 app.listen(PORT, () => {
