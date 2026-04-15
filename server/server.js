@@ -1,30 +1,30 @@
-const express = require('express')
-const logger = require('morgan')
-const cors = require('cors')
-
 const dns = require("dns")
 dns.setServers(["8.8.8.8", "1.1.1.1"])
 
-require('dotenv').config()
-require('./db')
+//////////////////////////
 
-const RideRouter = require('./routes/RideRouter')
-
+const express = require("express")
 const app = express()
+const logger = require("morgan")
+const cors = require("cors")
 
-const PORT = process.env.PORT || 3001
+require("dotenv").config()
+require("./db")
+
+const PORT = process.env.PORT || 3229
+
+const ThemeRouter = require("./routes/ThemeRouter")
 
 app.use(cors())
-app.use(logger('dev'))
+app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use("/themes", ThemeRouter)
 
-app.use('/rides', RideRouter)
-
-app.get('/', (req, res) => {
-  res.send('Theme Park API ')
+app.get("/", (req, res) => {
+  res.send("Theme Park Running ")
 })
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT} `)
+  console.log(`My Server is running on port ${PORT} `)
 })
